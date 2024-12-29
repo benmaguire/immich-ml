@@ -1,0 +1,26 @@
+---
+immich: 
+  url: http://10.0.0.1:2283/api
+  api_key: ""
+
+scheduler:
+  - name: ""
+    schedule: "daily"
+    machine_learning:
+      - model: "Falconsai/nsfw_image_detection"
+        tag_prefix: "NSFW/"
+        min_detection_score: 0.7
+        labels:
+          - name: Normal
+            tag: Normal
+          - name: NSFW
+            tag: Warning
+      - model: microsoft/dit-large-finetuned-rvlcdip
+        tag_prefix: "DIT/"
+        min_detection_score: 0.7
+        labels: []
+
+logging:
+  level: INFO
+
+state_dir: /state
